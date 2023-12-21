@@ -1,5 +1,5 @@
 "use client";
-
+import { useState, useRef } from "react";
 import Header from "@/app/ui/common/header";
 import styles from "@/app/page.module.css";
 import { HeartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -7,6 +7,7 @@ import Image from "next/image";
 import Pagination from "./ui/common/pagination";
 import usePagination from "./ui/common/usePagination";
 import clsx from "clsx";
+import Modal from "./ui/modal";
 
 const PAGINATION = {
   pageRange: 5,
@@ -14,6 +15,9 @@ const PAGINATION = {
 };
 
 export default function Page() {
+  const [isOpen, setIsOpen] = useState(true);
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("submit");
@@ -25,7 +29,7 @@ export default function Page() {
   });
 
   const elements = Array(20).fill(
-    <li className={styles.photoItem}>
+    <li className={styles.photoItem} onClick={() => setIsOpen(true)}>
       <Image src="/images/sample.webp" width={99} height={30} alt="lmg" />
       <button>
         <HeartIcon className={styles.likeButton} />
@@ -85,6 +89,12 @@ export default function Page() {
             />
           </div>
         </section>
+
+        {isOpen && (
+          <div ref={modalRef} className={styles.modalRef}>
+            <Modal setIsOpen={setIsOpen} />
+          </div>
+        )}
       </main>
     </div>
   );

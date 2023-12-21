@@ -1,6 +1,6 @@
 import styles from "@/app/ui/common/pagination.module.css";
 import clsx from "clsx";
-import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { ChevronRightIcon, ChevronLeftIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 
 type Pagination = {
   page: number;
@@ -16,12 +16,6 @@ const Pagination = ({ page, setPage, totalPost, pageRange, btnRange }: Paginatio
   const endPage = startPage + btnRange - 1; // 현재 버튼의 끝 페이지 번호
   const totalPage = Math.ceil(totalPost / pageRange); // 총 게시글 세트 수
   const totalSet = Math.ceil(totalPage / btnRange); // 전체 버튼 세트 수
-
-  // const firstButton = currentSet > 1 && (
-  //   <button className={styles.button} onClick={() => setPage(1)}>
-  //     &lt;&lt;
-  //   </button>
-  // );
 
   const lastButton = totalSet > currentSet && (
     <button className={styles.button} onClick={() => setPage(totalPage)}>
@@ -58,10 +52,9 @@ const Pagination = ({ page, setPage, totalPost, pageRange, btnRange }: Paginatio
 
   return (
     <nav className={styles.nav}>
-      {/* {firstButton} */}
       {prevButton}
       {numberButtons}
-      {totalSet > currentSet && "..."}
+      {totalSet > currentSet && <EllipsisHorizontalIcon />}
       {lastButton}
       {nextButton}
     </nav>
