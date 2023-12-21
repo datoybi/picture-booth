@@ -47,3 +47,6 @@ ol,
 ul {
   list-style: none;
 }
+input:focus {
+  outline: none;
+}
