@@ -1,7 +1,8 @@
 "use client";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import styles from "@/app/ui/main/search.module.css";
+import styles from "@/app/ui/search.module.css";
+import clsx from "clsx";
 
 const SearchForm = () => {
   const handleSubmit = (e: any) => {
@@ -10,7 +11,7 @@ const SearchForm = () => {
   };
 
   return (
-    <section className={styles.searchCover}>
+    <section className={clsx(styles.searchCover, "mb-50")}>
       <div className={styles.search}>
         <h1 className={styles.title}>Will Photo</h1>
         <p>

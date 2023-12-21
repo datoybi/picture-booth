@@ -1,5 +1,4 @@
 .photoList {
-  margin-top: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
@@ -25,7 +24,6 @@
 }
 
 .pagingWrapper {
-  border: 1px solid;
   height: 50px;
   margin-top: 50px;
   margin-bottom: 100px;

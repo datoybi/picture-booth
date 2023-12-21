@@ -1,5 +1,5 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
-import styles from "@/app/ui/main/photo-item.module.css";
+import styles from "@/app/ui/common/photo-item.module.css";
 import Image from "next/image";
 
 const PhotoItem = ({ setIsOpen }: any) => {

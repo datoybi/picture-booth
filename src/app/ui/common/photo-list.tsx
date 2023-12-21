@@ -6,8 +6,8 @@ import clsx from "clsx";
 import Pagination from "@/app/ui/common/pagination";
 import usePagination from "@/app/ui/common/usePagination";
 import Modal from "@/app/ui/modal";
-import PhotoItem from "@/app/ui/main/photo-item";
-import styles from "@/app/ui/main/photo-list.module.css";
+import PhotoItem from "@/app/ui/common/photo-item";
+import styles from "@/app/ui/common/photo-list.module.css";
 
 const PAGINATION = {
   pageRange: 5,

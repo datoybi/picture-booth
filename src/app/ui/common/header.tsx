@@ -12,9 +12,9 @@ const Header = () => {
       </Link>
       <div className={styles.buttonWrapper}>
         <button className={clsx(styles.button, styles.fill)}>사진 제출</button>
-        <button className={clsx(styles.button, styles.outline)}>
+        <Link href="/likes" className={clsx(styles.button, styles.outline)}>
           북마크 <HeartIcon className={styles.heartIcon} />
-        </button>
+        </Link>
 
         <div className={styles.userWrapper}>
           <span className={styles.name}>Evie</span>

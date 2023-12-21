@@ -1,7 +1,5 @@
 "use client";
-import { HeartIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState, useRef } from "react";
-import clsx from "clsx";
+import { HeartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import styles from "@/app/ui/modal.module.css";
 
 const Modal = ({ setIsOpen }: any) => {
