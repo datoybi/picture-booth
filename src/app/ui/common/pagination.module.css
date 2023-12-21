@@ -20,13 +20,15 @@
   stroke-width: 2.5px;
 }
 
-/* .button:disable > svg {
-  color: red;
-} */
-
 .disabled {
   cursor: default;
 }
+
 .disabled > svg {
   color: rgba(0, 0, 0, 0.3);
+}
+
+.ellipsisDot {
+  margin: auto 0;
+  stroke-width: 2px;
 }

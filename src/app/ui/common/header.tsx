@@ -8,8 +8,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Link href="/">
-        <span>logo</span>
-        {/* <Image src="/logo.png" width={99} height={30} alt="logo" /> */}
+        <Image src="/logo.png" width={99} height={30} alt="logo" />
       </Link>
       <div className={styles.buttonWrapper}>
         <button className={clsx(styles.button, styles.fill)}>사진 제출</button>

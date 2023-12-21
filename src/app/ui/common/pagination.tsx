@@ -54,7 +54,7 @@ const Pagination = ({ page, setPage, totalPost, pageRange, btnRange }: Paginatio
     <nav className={styles.nav}>
       {prevButton}
       {numberButtons}
-      {totalSet > currentSet && <EllipsisHorizontalIcon />}
+      {totalSet > currentSet && <EllipsisHorizontalIcon className={styles.ellipsisDot} />}
       {lastButton}
       {nextButton}
     </nav>
