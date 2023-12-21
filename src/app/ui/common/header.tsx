@@ -1,8 +1,7 @@
 import Image from "next/image";
 import clsx from "clsx";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import styles from "@/app/ui/common/header.module.css";
 
 const Header = () => {
@@ -15,7 +14,7 @@ const Header = () => {
       <div className={styles.buttonWrapper}>
         <button className={clsx(styles.button, styles.fill)}>사진 제출</button>
         <button className={clsx(styles.button, styles.outline)}>
-          북마크 <FontAwesomeIcon icon={faHeart} />
+          북마크 <HeartIcon className={styles.heartIcon} />
         </button>
 
         <div className={styles.userWrapper}>
