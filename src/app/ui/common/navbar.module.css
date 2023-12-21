@@ -1,0 +1,24 @@
+.line {
+  float: right;
+  display: block;
+  color: #eaeaea;
+  margin: auto -20px;
+  font-weight: bolder;
+}
+
+.nav {
+  width: 100%;
+}
+
+.navList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3.5%;
+}
+
+.navItem {
+  color: gray;
+  font-weight: 600;
+  padding: 10px 0;
+}
