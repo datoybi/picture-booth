@@ -19,15 +19,15 @@ export function NasaContextProvider({ children }: { children: JSX.Element }) {
   };
 
   const likeIds = likes.map((like: any) => like.id);
-
+  const likeData = { results: likes, total: likes.length };
   const contextValue = {
-    likes,
+    likeData,
     setLikes: setLikesHandler,
     likeIds,
   };
 
-  console.log(likes);
-  console.log(likeIds);
+  // console.log(likes);
+  // console.log(likeIds);
 
   return <LikeContext.Provider value={contextValue}>{children}</LikeContext.Provider>;
 }

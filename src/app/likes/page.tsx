@@ -5,11 +5,11 @@ import { useContext } from "react";
 import LikeContext from "@/like-context";
 
 const LikePage = () => {
-  const { likes } = useContext(LikeContext);
+  const { likeData } = useContext(LikeContext);
 
   return (
     <main className={clsx("mt-25", "container")}>
-      <PhotoList photos={likes} />
+      <PhotoList photoData={likeData} />
     </main>
   );
 };
