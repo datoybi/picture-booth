@@ -2,12 +2,18 @@
 import { HeartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import styles from "@/app/ui/modal.module.css";
 
-const Modal = ({ setIsOpen }: any) => {
+type ModalProp = {
+  setModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; id: string | null }>>;
+  photoId: string | null;
+};
+
+const Modal = ({ setModal, photoId }: ModalProp) => {
+  console.log(photoId);
   return (
     <div
       className={styles.backdrop}
       onClick={() => {
-        setIsOpen(false);
+        setModal({ isOpen: false, id: null });
       }}
     >
       <div
@@ -21,7 +27,7 @@ const Modal = ({ setIsOpen }: any) => {
             <XMarkIcon
               className={styles.cancelIcon}
               onClick={() => {
-                setIsOpen(false);
+                setModal({ isOpen: false, id: null });
               }}
             />
             <h3 className={styles.photoName}>Evie Park</h3>

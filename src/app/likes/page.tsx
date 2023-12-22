@@ -1,8 +1,9 @@
-import PhotoList from "@/app/ui/common/photo-list";
+import clsx from "clsx";
+import PhotoList from "../ui/common/photo-list";
 
 const LikePage = () => {
   return (
-    <main className="mt-25">
+    <main className={clsx("mt-25", "container")}>
       <PhotoList />
     </main>
   );
