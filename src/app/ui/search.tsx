@@ -2,13 +2,24 @@
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "@/app/ui/search.module.css";
+import { useDebouncedCallback } from "use-debounce";
 import clsx from "clsx";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const SearchForm = () => {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("submit");
-  };
+  const searchParam = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const handleSearch = useDebouncedCallback((e: any) => {
+    const keyword = e.target.value;
+    const params = new URLSearchParams(searchParam);
+    params.set("page", "1");
+    if (keyword) params.set("query", keyword);
+    else params.delete("query");
+
+    replace(`${pathname}?${params.toString()}`);
+  }, 500);
 
   return (
     <section className={clsx(styles.searchCover, "mb-50")}>
@@ -18,8 +29,14 @@ const SearchForm = () => {
           인터넷의 시각 자료 출처입니다.
           <br /> 모든지역에 있는 크리에이터들의 지원을 받습니다.
         </p>
-        <form onSubmit={handleSubmit}>
-          <input type="input" className={styles.input} placeholder="고해상도 이미지 검색" />
+        <form>
+          <input
+            type="input"
+            name="search"
+            className={styles.input}
+            placeholder="고해상도 이미지 검색"
+            onChange={(e) => handleSearch(e)}
+          />
           <button type="submit">
             <MagnifyingGlassIcon className={styles.searchIcon} />
           </button>
