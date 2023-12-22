@@ -34,11 +34,15 @@ const PhotoList = ({ photos }: any) => {
   });
   console.log(modal);
 
+  if (photos.length === 0) {
+    return <p>사진이 없습니다.</p>;
+  }
+
   return (
     <section>
       <div className="container">
         <ul className={clsx(styles.photoList)}>
-          {photos.map((photo: any, i: number) => (
+          {photos.map((photo: any) => (
             // photoItem을 굳이 빼야될것같니??
             <PhotoItem key={photo.id} photo={photo} setModal={setModal} />
           ))}

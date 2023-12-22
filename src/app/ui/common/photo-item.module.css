@@ -21,6 +21,9 @@
   width: 25px;
   height: 25px;
   stroke-width: 2px;
-  stroke: #fff;
-  fill: red;
+  stroke: #f2f4f6;
+}
+
+.active {
+  fill: #ec5642;
 }
