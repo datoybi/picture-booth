@@ -80,18 +80,17 @@
 }
 
 .modalImage {
-  border: 1px solid;
-  /* TODO: 비율 유지하기 */
-  width: 40%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
   margin: 30px auto 0;
+  position: relative;
 }
 
 .photoDescription {
-  margin-top: 30px;
-  margin-left: 50px;
-  width: 100%;
-  height: 200px;
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 90%;
 }
 
 .photoInfo {
@@ -121,7 +120,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 50px;
+  flex-wrap: wrap;
 }
 
 .tag {
@@ -130,4 +129,14 @@
   color: gray;
   font-weight: 600;
   border-radius: 8px;
+}
+
+.likeButton {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  stroke-width: 2px;
+  stroke: #f2f4f6;
 }

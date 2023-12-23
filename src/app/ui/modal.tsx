@@ -1,21 +1,55 @@
 "use client";
+
 import { HeartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import styles from "@/app/ui/modal.module.css";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { useContext } from "react";
+import LikeContext from "@/like-context";
 
 type ModalProp = {
-  setModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; id: string | null }>>;
-  photoId: string | null;
+  photo: any;
 };
 
-const Modal = ({ setModal, photoId }: ModalProp) => {
-  console.log(photoId);
+const Modal = ({ photo }: ModalProp) => {
+  const searchParam = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const { userName, width, height, downloads, tags, url, downloadUrl, createdAt } = photo;
+  const { likeIds } = useContext(LikeContext);
+
+  const handleCloseModal = () => {
+    const params = new URLSearchParams(searchParam);
+    params.delete("id");
+    params.delete("show");
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  function elapsedTime(date: string) {
+    const start = new Date(date).valueOf();
+    const end = new Date().valueOf();
+    const diff = (end - start) / 1000;
+
+    const times = [
+      { name: "년", milliSeconds: 60 * 60 * 24 * 365 },
+      { name: "개월", milliSeconds: 60 * 60 * 24 * 30 },
+      { name: "일", milliSeconds: 60 * 60 * 24 },
+      { name: "시간", milliSeconds: 60 * 60 },
+      { name: "분", milliSeconds: 60 },
+    ];
+
+    for (const value of times) {
+      const betweenTime = Math.floor(diff / value.milliSeconds);
+
+      if (betweenTime > 0) {
+        return `${betweenTime}${value.name} 전`;
+      }
+    }
+    return "방금 전";
+  }
   return (
-    <div
-      className={styles.backdrop}
-      onClick={() => {
-        setModal({ isOpen: false, id: null });
-      }}
-    >
+    <div className={styles.backdrop} onClick={handleCloseModal}>
       <div
         className={styles.modalInner}
         onClick={(e) => {
@@ -24,39 +58,42 @@ const Modal = ({ setModal, photoId }: ModalProp) => {
       >
         <div className={styles.modalTitle}>
           <div className={styles.modalTitleWrapper}>
-            <XMarkIcon
-              className={styles.cancelIcon}
-              onClick={() => {
-                setModal({ isOpen: false, id: null });
-              }}
-            />
-            <h3 className={styles.photoName}>Evie Park</h3>
+            <XMarkIcon className={styles.cancelIcon} onClick={handleCloseModal} />
+            <h3 className={styles.photoName}>{userName}</h3>
           </div>
           <div className={styles.modalButtons}>
-            <HeartIcon className={styles.heartIcon} />
-            <button className={styles.downloadButton}>다운로드</button>
+            {likeIds.includes(photo.id) && <HeartIcon className={styles.heartIcon} />}
+            <button className={styles.downloadButton}>
+              <Link href={downloadUrl}>다운로드</Link>
+            </button>
           </div>
         </div>
-        <div className={styles.modalImage}></div>
+        <div className={styles.modalImage}>
+          <Image src={url} fill={true} alt="img" style={{ objectFit: "contain" }} />
+        </div>
         <div className={styles.photoDescription}>
           <dl className={styles.photoInfo}>
             <div className={styles.infoWrapper}>
               <dt className={styles.infoTitle}>이미지 크기</dt>
-              <dd className={styles.infoContent}>4500 X 5000</dd>
+              <dd className={styles.infoContent}>
+                {width} X {height}
+              </dd>
             </div>
             <div className={styles.infoWrapper}>
               <dt className={styles.infoTitle}>업로드</dt>
-              <dd className={styles.infoContent}>6일전 게시됨</dd>
+              <dd className={styles.infoContent}>{elapsedTime(createdAt)} 게시됨</dd>
             </div>
             <div className={styles.infoWrapper}>
               <dt className={styles.infoTitle}>다운로드</dt>
-              <dd className={styles.infoContent}>1234</dd>
+              <dd className={styles.infoContent}>{downloads}</dd>
             </div>
           </dl>
           <div className={styles.tags}>
-            <span className={styles.tag}>알로에</span>
-            <span className={styles.tag}>식집사</span>
-            <span className={styles.tag}>식물</span>
+            {tags.map((tag: string) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </div>

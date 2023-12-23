@@ -6,19 +6,17 @@ import Link from "next/link";
 
 type Pagination = {
   page: number;
-  totalPost: number;
   btnRange: number;
-  pageRange: number;
+  totalPage: number;
 };
 
-const Pagination = ({ page, totalPost, pageRange, btnRange }: Pagination) => {
+const Pagination = ({ page, btnRange, totalPage }: Pagination) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
   const currentSet = Math.ceil(page / btnRange); // 현재 버튼 세트 번호
   const startPage = (currentSet - 1) * btnRange + 1; // 현재 버튼의 시작 페이지 번호
   const endPage = startPage + btnRange - 1; // 현재 버튼의 끝 페이지 번호
-  const totalPage = Math.ceil(totalPost / pageRange); // 총 게시글 세트 수
   const totalSet = Math.ceil(totalPage / btnRange); // 전체 버튼 세트 수
 
   const createPageURL = (pageNumber: number | string) => {
