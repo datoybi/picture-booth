@@ -7,7 +7,7 @@ const LikeContext = React.createContext({
   setLikes: () => {},
 });
 
-export function NasaContextProvider({ children }: { children: JSX.Element }) {
+export function LikeContextProvider({ children }: { children: JSX.Element }) {
   const [likes, setLikes] = useState<any>([]);
 
   const setLikesHandler = (newLike: any) => {

@@ -8,6 +8,7 @@ export async function getPhotos({ query, page, per_page }: { query: string; page
     query === ""
       ? `${UNSPLASH_URL}/photos/?${qs.stringify({ client_id: API_SECRET_KEY, page, per_page })}`
       : `${UNSPLASH_URL}/search/photos/?${qs.stringify({ client_id: API_SECRET_KEY, page, per_page, query })}`;
+  console.log(url);
   try {
     const response = await fetch(url);
     if (response.ok) {

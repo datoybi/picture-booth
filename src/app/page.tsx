@@ -13,8 +13,6 @@ export const PAGINATION = {
 export default async function Page({ searchParams }: { searchParams?: { query?: string; page?: string } }) {
   const query = searchParams?.query || "";
   const page = Number(searchParams?.page) || 1;
-  // const totalPages = await fetchPhotos(query);
-  console.log(query, page);
   let photoData = await getPhotos({ query, page, per_page: PAGINATION.pageRange });
 
   const navItems = [

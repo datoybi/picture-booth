@@ -9,10 +9,6 @@
   border-radius: 6px;
 }
 
-.button:active {
-  background-color: #eaeaea;
-}
-
 .chevronIcon {
   width: 18px;
   height: 18px;
@@ -31,4 +27,8 @@
 .ellipsisDot {
   margin: auto 0;
   stroke-width: 2px;
+}
+
+.active {
+  background-color: #eaeaea;
 }
