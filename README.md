@@ -41,7 +41,7 @@ npm run dev
 
 # 구현 사항
 
-### 스켈레톤 로딩 화면을 구현하여 사용자 경험을 높였습니다.
+### Suspenses를 이용하여 스켈레톤 로딩 화면을 구현해서 사용자 경험을 높였습니다.
 
 ![skeleton.gif](./docs/skeleton.gif)
 
