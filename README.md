@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## **Getting Started**
 
-## Getting Started
+```
+git clone https://github.com/datoybi/wl_assignment.git
 
-First, run the development server:
-
-```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 배포 링크
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[https://wl-assignment-git-refector-datoybi.vercel.app/](https://wl-assignment-git-refector-datoybi.vercel.app/)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 기술 스택
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- React (18)
+- Typescript
+- Nextjs (14.0.4)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 구현 사항
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 스켈레톤 로딩 화면을 구현하여 사용자 경험을 높였습니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![skeleton.gif](./docs/skeleton.gif)
+
+### 컴포넌트의 재사용성을 고려하였습니다.
+
+ui/common/photo-list, ui/common/photo-item을 북마크 페이지와 메인페이지에서 공통 컴포넌트로 사용하였습니다.
+
+header와 navbar를 공통 컴포넌트로 사용하였습니다.
+
+### 관심사의 분리
+
+constants, utils, routing folder, lib으로 나누어 관심사의 분리를 하였습니다.
+
+### url 쿼리스트링을 이용하여 검색을 구현하였습니다.
+
+- 검색어가 존재하지 않을 때는 random 사진을 가져왔습니다.
+  ![url.gif](./docs/url.gif)
+
+### 반응형을 구현하였습니다.
+
+![responsive.gif](./docs/responsive.gif)
+
+---
+
+## 필수 요구 사항
+
+### 1. 공통
+
+- ~~헤더 로고 아이콘 클릭 시 검색 페이지로 이동합니다.~~
+- ~~내비게이션의 우측 상단 북마크 버튼을 누르면 북마크 화면으로 이동합니다.~~
+
+### 2. 검색 페이지(메인)
+
+- ~~사용자가 찾고자 하는 이미지에 대한 쿼리를 입력하면 결과에 대한 리스트가 보입니다.~~
+- ~~검색 결과에 대한 페이징 처리가 되어야 합니다.~~
+- ~~검색된 이미지 클릭 시 상세 모달이 나타나야 합니다.~~
+- ~~북마크 저장 여부에 따라 아이콘이 다르게 표시되어야 합니다.~~
+- ~~페이지 전환 시 현재 페이지 번호와 이미지 리스트가 변경되어야 합니다.~~
+
+### 3. 상세 모달
+
+- ~~이미지에 대한 정보를 나타냅니다.~~
+- ~~우측 북마크 버튼을 누르면 이미지가 북마크에 등록/취소됩니다.~~
+- ~~모달 외부영역 클릭 혹은 좌측 X 클릭 시 상세 모달이 닫힙니다.~~
+
+### 4. 북마크 페이지
+
+- ~~이미지 내 북마크 버튼을 누르면 북마크 취소되고, 리스트에서 제외됩니다.~~
+- ~~검색 페이지와 동기화가 이루어져야 합니다.~~
