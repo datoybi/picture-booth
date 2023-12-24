@@ -7,12 +7,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import LikeContext from "@/like-context";
+import { PhotoDetail } from "@/app/lib/definitions";
 
-type ModalProp = {
-  photo: any;
-};
-
-const Modal = ({ photo }: ModalProp) => {
+const Modal = ({ photo }: { photo: PhotoDetail }) => {
   const searchParam = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();

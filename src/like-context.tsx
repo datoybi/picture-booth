@@ -1,28 +1,38 @@
 "use client";
 
 import React, { useState } from "react";
+import { Photo } from "@/app/lib/definitions";
+import { PAGINATION } from "./constants";
 
-const LikeContext = React.createContext({
-  likes: [],
-  setLikes: () => {},
+type ContextType = {
+  likeData: { results: Photo[]; total_pages: number };
+  setLikesData: (Photo: Photo) => void;
+  likeIds: string[];
+};
+
+const LikeContext = React.createContext<ContextType>({
+  likeData: { results: [], total_pages: 0 },
+  setLikesData: () => {},
+  likeIds: [],
 });
 
-export function LikeContextProvider({ children }: { children: JSX.Element }) {
-  const [likes, setLikes] = useState<any>([]);
+export function LikeContextProvider({ children }: { children: React.ReactNode }) {
+  const [likes, setLikes] = useState<Photo[]>([]);
 
-  const setLikesHandler = (newLike: any) => {
-    const isExist = likes.findIndex((like: any) => like.id === newLike.id) === -1;
-    if (isExist) setLikes((prev: any) => [...prev, newLike]);
+  const setLikesHandler = (newLike: Photo) => {
+    const isExist = likes.findIndex((like) => like.id === newLike.id) === -1;
+    if (isExist) setLikes((prevLikes) => [...prevLikes, newLike]);
     else {
-      setLikes((prev: any) => prev.filter((el: any) => el.id !== newLike.id));
+      setLikes((prevLikes) => prevLikes.filter((like) => like.id !== newLike.id));
     }
   };
 
-  const likeIds = likes.map((like: any) => like.id);
-  const likeData = { results: likes, total_pages: likes.length };
+  const totalPage = Math.ceil(likes.length / PAGINATION.pageRange);
+  const likeIds = likes.map((like: Photo) => like.id);
+  const likeData = { results: likes, total_pages: totalPage };
   const contextValue = {
     likeData,
-    setLikes: setLikesHandler,
+    setLikesData: setLikesHandler,
     likeIds,
   };
 

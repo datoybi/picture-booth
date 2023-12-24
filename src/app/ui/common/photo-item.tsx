@@ -1,28 +1,23 @@
 "use client";
-import { HeartIcon } from "@heroicons/react/24/outline";
-import styles from "@/app/ui/common/photo-item.module.css";
-import Image from "next/image";
+
 import { useContext } from "react";
-import LikeContext from "@/like-context";
+import Image from "next/image";
 import clsx from "clsx";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { HeartIcon } from "@heroicons/react/24/outline";
+import LikeContext from "@/like-context";
+import styles from "@/app/ui/common/photo-item.module.css";
+import { Photo as PhotoType } from "@/app/lib/definitions";
 
-type PhotoItemType = {
-  // setModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; id: string | null }>>;
-  photo: any;
-};
-
-const PhotoItem = ({ photo }: PhotoItemType) => {
+const PhotoItem = ({ photo }: { photo: PhotoType }) => {
   const searchParam = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const { setLikesData, likeIds } = useContext(LikeContext);
 
-  // console.log(photo);
-  const { setLikes, likeIds } = useContext(LikeContext);
-
-  const handleLike = (e: any) => {
+  const handleLike = (e: React.MouseEvent<any>) => {
     e.stopPropagation();
-    setLikes(photo);
+    setLikesData(photo);
   };
 
   const handleOpenModal = () => {
@@ -34,7 +29,7 @@ const PhotoItem = ({ photo }: PhotoItemType) => {
 
   return (
     <li className={styles.photoItem} onClick={handleOpenModal}>
-      <Image src={photo.urls.small} width={99} height={30} alt="img" />
+      <Image src={photo.url} width={99} height={30} alt="img" />
       <button>
         <HeartIcon
           className={clsx(styles.likeButton, { [styles.active]: likeIds.includes(photo.id) })}

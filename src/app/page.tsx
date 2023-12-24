@@ -5,6 +5,7 @@ import PhotoList from "@/app/ui/common/photo-list";
 import Modal from "@/app/ui/modal";
 import { getPhotos, getPhoto } from "@/app/lib/data";
 import { PAGINATION } from "@/constants/index";
+import { Photo } from "@/app/lib/definitions";
 
 export default async function Page({
   searchParams,
@@ -15,8 +16,12 @@ export default async function Page({
   const page = Number(searchParams?.page) || 1;
   const show = Boolean(searchParams?.show) || false;
   const id = searchParams?.id || "";
-  const photo = show && id && (await getPhoto({ id }));
-  let photoData = await getPhotos({ query, page, per_page: PAGINATION.pageRange });
+  const isOpenModal = show === true && id !== "";
+  const photo = isOpenModal ? await getPhoto({ id }) : null;
+  const photoData = (await getPhotos({ query, page, per_page: PAGINATION.pageRange })) as {
+    results: Photo[];
+    total_pages: number;
+  };
 
   const navItems = [
     { name: "보도/편집 전용", href: "/" },
@@ -40,9 +45,8 @@ export default async function Page({
       <main className="container">
         <SearchForm />
         <PhotoList photoData={photoData} />
-        {/* 페이지네이션을 밖으로 빼도 되지 않을까? */}
       </main>
-      {show && <Modal photo={photo} />}
+      {isOpenModal && photo && <Modal photo={photo} />}
     </div>
   );
 }

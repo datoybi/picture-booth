@@ -11,7 +11,7 @@ const SearchForm = () => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleSearch = useDebouncedCallback((e: any) => {
+  const handleSearch = useDebouncedCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value;
     const params = new URLSearchParams(searchParam);
     params.set("page", "1");
