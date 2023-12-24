@@ -4,6 +4,7 @@ const API_SECRET_KEY = "nZbJKwsynDty_NmYhzy-fSqT0miezU-hv5rKZNLOuuU";
 import { PhotoDetail } from "@/app/lib/definitions";
 
 const fetchData = async (url: string) => {
+  console.log(url);
   try {
     const response = await fetch(url);
     if (response.ok) {
@@ -16,6 +17,7 @@ const fetchData = async (url: string) => {
 };
 
 export async function getPhotos({ query, page, per_page }: { query: string; page: number; per_page: number }) {
+  console.log(query);
   const url =
     query === ""
       ? `${UNSPLASH_URL}/photos/?${qs.stringify({ client_id: API_SECRET_KEY, page, per_page })}`

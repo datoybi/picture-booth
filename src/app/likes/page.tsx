@@ -1,7 +1,9 @@
 import clsx from "clsx";
+import { Suspense } from "react";
 import Modal from "@/app/ui/common/modal";
 import { getPhoto } from "@/app/lib/data";
 import ListWrapper from "@/app/likes/list-wrapper";
+import { ListSkeleton } from "@/app/ui/skeletons";
 
 export default async function LikePage({
   searchParams,
@@ -15,7 +17,10 @@ export default async function LikePage({
 
   return (
     <main className={clsx("mt-25", "container")}>
-      <ListWrapper />
+      <Suspense fallback={<ListSkeleton />}>
+        <ListWrapper />
+      </Suspense>
+
       {isOpenModal && photo && <Modal photo={photo} />}
     </main>
   );

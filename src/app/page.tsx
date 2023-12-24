@@ -1,11 +1,11 @@
+import { Suspense } from "react";
 import Header from "@/app/ui/common/header";
 import SearchForm from "@/app/ui/search";
 import Navbar from "@/app/ui/common/navbar";
-import PhotoList from "@/app/ui/common/photo-list";
 import Modal from "@/app/ui/common/modal";
-import { getPhotos, getPhoto } from "@/app/lib/data";
-import { PAGINATION } from "@/app/constants";
-import { Photo } from "@/app/lib/definitions";
+import { getPhoto } from "@/app/lib/data";
+import ListWrapper from "@/app/ui/list-wrapper";
+import { ListSkeleton } from "@/app/ui/skeletons";
 
 export default async function Page({
   searchParams,
@@ -19,10 +19,6 @@ export default async function Page({
 
   const isOpenModal = show === true && id !== "";
   const photo = isOpenModal ? await getPhoto({ id }) : null;
-  const photoData = (await getPhotos({ query, page, per_page: PAGINATION.pageRange })) as {
-    results: Photo[];
-    total_pages: number;
-  };
 
   const navItems = [
     { name: "보도/편집 전용", href: "/" },
@@ -45,7 +41,9 @@ export default async function Page({
       <Navbar items={navItems} />
       <main className="container">
         <SearchForm />
-        <PhotoList photoData={photoData} />
+        <Suspense key={query + page} fallback={<ListSkeleton />}>
+          <ListWrapper query={query} page={page} />
+        </Suspense>
       </main>
       {isOpenModal && photo && <Modal photo={photo} />}
     </div>
