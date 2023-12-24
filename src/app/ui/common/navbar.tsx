@@ -1,5 +1,5 @@
-import styles from "@/app/ui/common/navbar.module.css";
 import Link from "next/link";
+import styles from "@/app/ui/common/navbar.module.css";
 
 type ItemType = { items: { name: string; href: string }[] };
 

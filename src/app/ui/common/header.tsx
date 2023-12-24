@@ -1,7 +1,7 @@
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
 import styles from "@/app/ui/common/header.module.css";
 
 const Header = () => {

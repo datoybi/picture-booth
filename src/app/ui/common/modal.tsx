@@ -1,13 +1,14 @@
 "use client";
 
-import { HeartIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import styles from "@/app/ui/modal.module.css";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 import { useContext } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import LikeContext from "@/like-context";
+import { HeartIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { PhotoDetail } from "@/app/lib/definitions";
+import { elapsedTime } from "@/app/utils";
+import styles from "@/app/ui/common/modal.module.css";
 
 const Modal = ({ photo }: { photo: PhotoDetail }) => {
   const searchParam = useSearchParams();
@@ -23,28 +24,6 @@ const Modal = ({ photo }: { photo: PhotoDetail }) => {
     replace(`${pathname}?${params.toString()}`);
   };
 
-  function elapsedTime(date: string) {
-    const start = new Date(date).valueOf();
-    const end = new Date().valueOf();
-    const diff = (end - start) / 1000;
-
-    const times = [
-      { name: "년", milliSeconds: 60 * 60 * 24 * 365 },
-      { name: "개월", milliSeconds: 60 * 60 * 24 * 30 },
-      { name: "일", milliSeconds: 60 * 60 * 24 },
-      { name: "시간", milliSeconds: 60 * 60 },
-      { name: "분", milliSeconds: 60 },
-    ];
-
-    for (const value of times) {
-      const betweenTime = Math.floor(diff / value.milliSeconds);
-
-      if (betweenTime > 0) {
-        return `${betweenTime}${value.name} 전`;
-      }
-    }
-    return "방금 전";
-  }
   return (
     <div className={styles.backdrop} onClick={handleCloseModal}>
       <div

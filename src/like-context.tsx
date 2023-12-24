@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Photo } from "@/app/lib/definitions";
-import { PAGINATION } from "./constants";
+import { PAGINATION } from "@/app/constants";
 
 type ContextType = {
   likeData: { results: Photo[]; total_pages: number };

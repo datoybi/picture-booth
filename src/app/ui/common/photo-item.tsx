@@ -1,13 +1,13 @@
 "use client";
 
+import clsx from "clsx";
 import { useContext } from "react";
 import Image from "next/image";
-import clsx from "clsx";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { HeartIcon } from "@heroicons/react/24/outline";
 import LikeContext from "@/like-context";
-import styles from "@/app/ui/common/photo-item.module.css";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import { Photo as PhotoType } from "@/app/lib/definitions";
+import styles from "@/app/ui/common/photo-item.module.css";
 
 const PhotoItem = ({ photo }: { photo: PhotoType }) => {
   const searchParam = useSearchParams();

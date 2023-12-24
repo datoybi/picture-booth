@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Modal from "@/app/ui/modal";
+import Modal from "@/app/ui/common/modal";
 import { getPhoto } from "@/app/lib/data";
 import ListWrapper from "@/app/likes/list-wrapper";
 

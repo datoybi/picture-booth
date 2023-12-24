@@ -2,9 +2,9 @@ import Header from "@/app/ui/common/header";
 import SearchForm from "@/app/ui/search";
 import Navbar from "@/app/ui/common/navbar";
 import PhotoList from "@/app/ui/common/photo-list";
-import Modal from "@/app/ui/modal";
+import Modal from "@/app/ui/common/modal";
 import { getPhotos, getPhoto } from "@/app/lib/data";
-import { PAGINATION } from "@/constants/index";
+import { PAGINATION } from "@/app/constants";
 import { Photo } from "@/app/lib/definitions";
 
 export default async function Page({
@@ -16,6 +16,7 @@ export default async function Page({
   const page = Number(searchParams?.page) || 1;
   const show = Boolean(searchParams?.show) || false;
   const id = searchParams?.id || "";
+
   const isOpenModal = show === true && id !== "";
   const photo = isOpenModal ? await getPhoto({ id }) : null;
   const photoData = (await getPhotos({ query, page, per_page: PAGINATION.pageRange })) as {
