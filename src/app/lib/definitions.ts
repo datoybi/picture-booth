@@ -1,6 +1,7 @@
 export type Photo = {
   id: string;
   url: string;
+  slug: string;
 };
 
 export type PhotoDetail = {

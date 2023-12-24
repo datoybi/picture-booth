@@ -29,7 +29,7 @@ const PhotoItem = ({ photo }: { photo: PhotoType }) => {
 
   return (
     <li className={styles.photoItem} onClick={handleOpenModal}>
-      <Image src={photo.url} width={99} height={30} alt="img" />
+      <Image src={photo.url} width={99} height={30} alt={photo.slug} />
       <button>
         <HeartIcon
           className={clsx(styles.likeButton, { [styles.active]: likeIds.includes(photo.id) })}

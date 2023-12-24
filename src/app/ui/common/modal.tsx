@@ -14,7 +14,7 @@ const Modal = ({ photo }: { photo: PhotoDetail }) => {
   const searchParam = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const { userName, width, height, downloads, tags, url, downloadUrl, createdAt } = photo;
+  const { userName, width, height, downloads, tags, url, downloadUrl, createdAt, slug } = photo;
   const { likeIds } = useContext(LikeContext);
 
   const handleCloseModal = () => {
@@ -45,7 +45,7 @@ const Modal = ({ photo }: { photo: PhotoDetail }) => {
           </div>
         </div>
         <div className={styles.modalImage}>
-          <Image src={url} fill={true} alt="img" style={{ objectFit: "contain" }} />
+          <Image src={url} fill={true} alt={slug} style={{ objectFit: "contain" }} />
         </div>
         <div className={styles.photoDescription}>
           <dl className={styles.photoInfo}>
@@ -61,7 +61,7 @@ const Modal = ({ photo }: { photo: PhotoDetail }) => {
             </div>
             <div className={styles.infoWrapper}>
               <dt className={styles.infoTitle}>다운로드</dt>
-              <dd className={styles.infoContent}>{downloads}</dd>
+              <dd className={styles.infoContent}>{downloads.toLocaleString()}</dd>
             </div>
           </dl>
           <div className={styles.tags}>
