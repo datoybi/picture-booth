@@ -11,13 +11,17 @@ npm install
 npm run dev
 ```
 
+<br/>
+
 ---
 
 <br/>
 
 # 배포 링크
 
-[https://wl-assignment-git-refector-datoybi.vercel.app/](https://wl-assignment-git-refector-datoybi.vercel.app/)
+[https://wl-assignment.vercel.app/](https://wl-assignment.vercel.app/)
+
+<br/>
 
 ---
 
@@ -28,6 +32,8 @@ npm run dev
 - React (18)
 - Typescript
 - Nextjs (14.0.4)
+
+<br/>
 
 ---
 
@@ -57,14 +63,18 @@ constants, utils, routing folder, lib으로 나누어 관심사의 분리를 하
 
 ### url 쿼리스트링을 이용하여 검색을 구현하였습니다.
 
-- 검색어가 존재하지 않을 때는 random 사진을 가져왔습니다.
-  ![url.gif](./docs/url.gif)
+검색어가 존재하지 않을 때는 random 사진을 가져왔습니다.
+![url.gif](./docs/url.gif)
 
 <br/>
 
 ### 반응형을 구현하였습니다.
 
 ![responsive.gif](./docs/responsive.gif)
+
+### Context API를 사용하여 전역적으로 북마크 리스트를 관리하였습니다.
+
+<br/>
 
 ---
 
