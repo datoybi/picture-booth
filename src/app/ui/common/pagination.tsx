@@ -1,42 +1,49 @@
 import styles from "@/app/ui/common/pagination.module.css";
 import clsx from "clsx";
 import { ChevronRightIcon, ChevronLeftIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import { useSearchParams, usePathname } from "next/navigation";
+import Link from "next/link";
 
 type Pagination = {
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  totalPost: number;
   btnRange: number;
-  pageRange: number;
+  totalPage: number;
 };
 
-const Pagination = ({ page, setPage, totalPost, pageRange, btnRange }: Pagination) => {
+const Pagination = ({ page, btnRange, totalPage }: Pagination) => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
   const currentSet = Math.ceil(page / btnRange); // 현재 버튼 세트 번호
   const startPage = (currentSet - 1) * btnRange + 1; // 현재 버튼의 시작 페이지 번호
   const endPage = startPage + btnRange - 1; // 현재 버튼의 끝 페이지 번호
-  const totalPage = Math.ceil(totalPost / pageRange); // 총 게시글 세트 수
   const totalSet = Math.ceil(totalPage / btnRange); // 전체 버튼 세트 수
 
+  const createPageURL = (pageNumber: number | string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", pageNumber.toString());
+    return `${pathname}?${params.toString()}`;
+  };
+
   const lastButton = totalSet > currentSet && (
-    <button className={styles.button} onClick={() => setPage(totalPage)}>
+    <Link className={styles.button} href={createPageURL(totalPage)}>
       {totalPage}
-    </button>
+    </Link>
   );
 
   const nextButton = totalSet > currentSet && (
-    <button className={clsx(styles.moveButton, styles.button)} onClick={() => setPage(endPage + 1)}>
+    <Link className={clsx(styles.moveButton, styles.button)} href={createPageURL(endPage + 1)}>
       <ChevronRightIcon className={styles.chevronIcon} />
-    </button>
+    </Link>
   );
 
   const prevButton = (
-    <button
+    <Link
       className={clsx(styles.moveButton, styles.button, { [styles.disabled]: currentSet <= 1 })}
-      onClick={() => setPage(startPage - 1)}
-      disabled={currentSet <= 1}
+      href={createPageURL(startPage - 1)}
     >
       <ChevronLeftIcon className={styles.chevronIcon} />
-    </button>
+    </Link>
   );
 
   const numberButtons = Array(btnRange)
@@ -44,9 +51,13 @@ const Pagination = ({ page, setPage, totalPost, pageRange, btnRange }: Paginatio
     .map((_, i) => {
       if (startPage + i > totalPage) return;
       return (
-        <button className={clsx(styles.button, styles.pageNumber)} key={i} onClick={() => setPage(startPage + i)}>
+        <Link
+          href={createPageURL(startPage + i)}
+          className={clsx(styles.button, styles.pageNumber, { [styles.active]: startPage + i === page })}
+          key={i}
+        >
           {startPage + i}
-        </button>
+        </Link>
       );
     });
 

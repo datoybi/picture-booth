@@ -1,20 +1,21 @@
 import Header from "@/app/ui/common/header";
 import SearchForm from "@/app/ui/search";
 import Navbar from "@/app/ui/common/navbar";
-import PhotoList from "./ui/common/photo-list";
-// import { photos } from "@/app/lib/placeholder-data";
-import { getPhotos } from "@/app/lib/data";
+import PhotoList from "@/app/ui/common/photo-list";
+import Modal from "@/app/ui/modal";
+import { getPhotos, getPhoto } from "@/app/lib/data";
+import { PAGINATION } from "@/constants/index";
 
-export const PAGINATION = {
-  pageRange: 20,
-  btnRange: 5,
-};
-
-export default async function Page({ searchParams }: { searchParams?: { query?: string; page?: string } }) {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams?: { query?: string; page?: string; show?: string; id?: string };
+}) {
   const query = searchParams?.query || "";
   const page = Number(searchParams?.page) || 1;
-  // const totalPages = await fetchPhotos(query);
-  console.log(query, page);
+  const show = Boolean(searchParams?.show) || false;
+  const id = searchParams?.id || "";
+  const photo = show && id && (await getPhoto({ id }));
   let photoData = await getPhotos({ query, page, per_page: PAGINATION.pageRange });
 
   const navItems = [
@@ -41,6 +42,7 @@ export default async function Page({ searchParams }: { searchParams?: { query?: 
         <PhotoList photoData={photoData} />
         {/* 페이지네이션을 밖으로 빼도 되지 않을까? */}
       </main>
+      {show && <Modal photo={photo} />}
     </div>
   );
 }

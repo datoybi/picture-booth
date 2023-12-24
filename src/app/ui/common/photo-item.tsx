@@ -5,24 +5,35 @@ import Image from "next/image";
 import { useContext } from "react";
 import LikeContext from "@/like-context";
 import clsx from "clsx";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 type PhotoItemType = {
-  setModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; id: string | null }>>;
+  // setModal: React.Dispatch<React.SetStateAction<{ isOpen: boolean; id: string | null }>>;
   photo: any;
 };
 
-const PhotoItem = ({ setModal, photo }: PhotoItemType) => {
+const PhotoItem = ({ photo }: PhotoItemType) => {
+  const searchParam = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   // console.log(photo);
   const { setLikes, likeIds } = useContext(LikeContext);
 
   const handleLike = (e: any) => {
     e.stopPropagation();
-    console.log(photo);
     setLikes(photo);
   };
 
+  const handleOpenModal = () => {
+    const params = new URLSearchParams(searchParam);
+    params.set("show", "true");
+    params.set("id", photo.id);
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
-    <li className={styles.photoItem} onClick={() => setModal({ isOpen: true, id: photo.id })}>
+    <li className={styles.photoItem} onClick={handleOpenModal}>
       <Image src={photo.urls.small} width={99} height={30} alt="img" />
       <button>
         <HeartIcon

@@ -1,5 +1,5 @@
 "use client";
-// @ts-nocheck
+
 import React, { useState } from "react";
 
 const LikeContext = React.createContext({
@@ -7,7 +7,7 @@ const LikeContext = React.createContext({
   setLikes: () => {},
 });
 
-export function NasaContextProvider({ children }: { children: JSX.Element }) {
+export function LikeContextProvider({ children }: { children: JSX.Element }) {
   const [likes, setLikes] = useState<any>([]);
 
   const setLikesHandler = (newLike: any) => {
@@ -19,15 +19,12 @@ export function NasaContextProvider({ children }: { children: JSX.Element }) {
   };
 
   const likeIds = likes.map((like: any) => like.id);
-  const likeData = { results: likes, total: likes.length };
+  const likeData = { results: likes, total_pages: likes.length };
   const contextValue = {
     likeData,
     setLikes: setLikesHandler,
     likeIds,
   };
-
-  // console.log(likes);
-  // console.log(likeIds);
 
   return <LikeContext.Provider value={contextValue}>{children}</LikeContext.Provider>;
 }
