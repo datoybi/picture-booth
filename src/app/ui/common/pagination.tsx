@@ -1,8 +1,9 @@
-import styles from "@/app/ui/common/pagination.module.css";
+"use client";
 import clsx from "clsx";
-import { ChevronRightIcon, ChevronLeftIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
-import { useSearchParams, usePathname } from "next/navigation";
 import Link from "next/link";
+import { useSearchParams, usePathname } from "next/navigation";
+import { ChevronRightIcon, ChevronLeftIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import styles from "@/app/ui/common/pagination.module.css";
 
 type Pagination = {
   page: number;

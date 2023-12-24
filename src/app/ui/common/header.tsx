@@ -1,10 +1,13 @@
-import Image from "next/image";
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import styles from "@/app/ui/common/header.module.css";
 
 const Header = () => {
+  const name = "Evie";
+  const email = "evie@willlog.io";
+
   return (
     <header className={styles.header}>
       <Link href="/">
@@ -17,8 +20,8 @@ const Header = () => {
         </Link>
 
         <div className={styles.userWrapper}>
-          <span className={styles.name}>Evie</span>
-          <span>evie@willlog.io</span>
+          <span className={styles.name}>{name}</span>
+          <span>{email}</span>
         </div>
       </div>
     </header>

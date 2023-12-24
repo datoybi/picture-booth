@@ -1,9 +1,9 @@
-import styles from "@/app/ui/common/navbar.module.css";
 import Link from "next/link";
+import styles from "@/app/ui/common/navbar.module.css";
 
-type ItemType = { name: string; href: string };
+type ItemType = { items: { name: string; href: string }[] };
 
-const Navbar = ({ items }: { items: ItemType[] }) => {
+const Navbar = ({ items }: ItemType) => {
   return (
     <nav className={styles.nav}>
       <ul className={styles.navList}>

@@ -1,17 +1,17 @@
 "use client";
 
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import styles from "@/app/ui/search.module.css";
-import { useDebouncedCallback } from "use-debounce";
 import clsx from "clsx";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
+import styles from "@/app/ui/search.module.css";
 
 const SearchForm = () => {
   const searchParam = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleSearch = useDebouncedCallback((e: any) => {
+  const handleSearch = useDebouncedCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value;
     const params = new URLSearchParams(searchParam);
     params.set("page", "1");
