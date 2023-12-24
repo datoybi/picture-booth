@@ -4,11 +4,7 @@ import Navbar from "@/app/ui/common/navbar";
 import PhotoList from "@/app/ui/common/photo-list";
 import Modal from "@/app/ui/modal";
 import { getPhotos, getPhoto } from "@/app/lib/data";
-
-export const PAGINATION = {
-  pageRange: 20,
-  btnRange: 5,
-};
+import { PAGINATION } from "@/constants/index";
 
 export default async function Page({
   searchParams,

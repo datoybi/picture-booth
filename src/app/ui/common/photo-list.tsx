@@ -6,7 +6,7 @@ import styles from "@/app/ui/common/photo-list.module.css";
 import clsx from "clsx";
 import Pagination from "@/app/ui/common/pagination";
 // import ModalWrapper from "@/app/ui/modal-wrapper";
-import { PAGINATION } from "@/app/page";
+import { PAGINATION } from "@/constants/index";
 import { useSearchParams } from "next/navigation";
 
 const PhotoList = ({ photoData = [] }: any) => {

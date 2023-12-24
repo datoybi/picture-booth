@@ -9,10 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="kr">
       <body className={inter.className}>
-        <LikeContextProvider>
-          {children}
-          <div id="modal" />
-        </LikeContextProvider>
+        <LikeContextProvider>{children}</LikeContextProvider>
       </body>
     </html>
   );
