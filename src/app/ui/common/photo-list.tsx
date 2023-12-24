@@ -6,13 +6,12 @@ import { PAGINATION } from "@/app/constants";
 import styles from "@/app/ui/common/photo-list.module.css";
 
 type PhotoListType = {
-  searchParams?: { query?: string; page?: string; show?: string; id?: string };
   photoData: { results: Photo[]; total_pages: number };
+  page: number;
 };
 
-const PhotoList = ({ searchParams, photoData }: PhotoListType) => {
+const PhotoList = ({ photoData, page }: PhotoListType) => {
   const { results: photos = [], total_pages } = photoData;
-  const page = Number(searchParams?.page) || 1;
   if (photos.length === 0) return <p>사진이 없습니다.</p>;
 
   return (

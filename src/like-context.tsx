@@ -30,6 +30,7 @@ export function LikeContextProvider({ children }: { children: React.ReactNode })
   const totalPage = Math.ceil(likes.length / PAGINATION.pageRange);
   const likeIds = likes.map((like: Photo) => like.id);
   const likeData = { results: likes, total_pages: totalPage };
+
   const contextValue = {
     likeData,
     setLikesData: setLikesHandler,

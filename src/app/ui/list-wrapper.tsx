@@ -8,7 +8,7 @@ const ListWrapper = async ({ query, page }: { query: string; page: number }) => 
     results: Photo[];
     total_pages: number;
   };
-  return <PhotoList photoData={photoData} />;
+  return <PhotoList photoData={photoData} page={page} />;
 };
 
 export default ListWrapper;

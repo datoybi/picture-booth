@@ -11,6 +11,7 @@ export default async function LikePage({
   searchParams?: { query?: string; page?: string; show?: string; id?: string };
 }) {
   const show = Boolean(searchParams?.show) || false;
+  const page = Number(searchParams?.page) || 1;
   const id = searchParams?.id || "";
   const isOpenModal = show === true && id !== "";
   const photo = isOpenModal ? await getPhoto({ id }) : null;
@@ -18,7 +19,7 @@ export default async function LikePage({
   return (
     <main className={clsx("mt-25", "container")}>
       <Suspense fallback={<ListSkeleton />}>
-        <ListWrapper />
+        <ListWrapper page={page} />
       </Suspense>
 
       {isOpenModal && photo && <Modal photo={photo} />}
