@@ -1,0 +1,35 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+
+.button {
+  padding: 5px 12px;
+  border-radius: 6px;
+}
+
+.chevronIcon {
+  width: 18px;
+  height: 18px;
+  color: black;
+  stroke-width: 2.5px;
+}
+
+.disabled {
+  cursor: default;
+}
+
+.disabled > svg {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.ellipsisDot {
+  margin: auto 0;
+  stroke-width: 2px;
+}
+
+.active {
+  background-color: #eaeaea;
+}
