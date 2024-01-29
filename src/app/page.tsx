@@ -23,7 +23,7 @@ export default async function Page({
   const navItems = [
     { name: "보도/편집 전용", href: "/" },
     { name: "팔로잉", href: "/" },
-    { name: "Will Photo+", href: "/" },
+    { name: "Photo+", href: "/" },
     { name: "|", href: "/" },
     { name: "단색", href: "/" },
     { name: "배경 화면", href: "/" },

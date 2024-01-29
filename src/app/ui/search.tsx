@@ -24,7 +24,7 @@ const SearchForm = () => {
   return (
     <section className={clsx(styles.searchCover, "mb-50")}>
       <div className={styles.search}>
-        <h1 className={styles.title}>Will Photo</h1>
+        <h1 className={styles.title}>Photo Search</h1>
         <p>
           인터넷의 시각 자료 출처입니다.
           <br /> 모든지역에 있는 크리에이터들의 지원을 받습니다.

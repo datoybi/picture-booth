@@ -5,13 +5,13 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import styles from "@/app/ui/common/header.module.css";
 
 const Header = () => {
-  const name = "Evie";
-  const email = "evie@willlog.io";
+  const name = "Dasom";
+  const email = "dsy0302@gmail.com";
 
   return (
     <header className={styles.header}>
       <Link href="/">
-        <Image src="/logo.png" width={99} height={30} alt="logo" />
+        <Image src="/logo.png" width={40} height={30} alt="logo" />
       </Link>
       <div className={styles.buttonWrapper}>
         <button className={clsx(styles.button, styles.fill)}>사진 제출</button>
